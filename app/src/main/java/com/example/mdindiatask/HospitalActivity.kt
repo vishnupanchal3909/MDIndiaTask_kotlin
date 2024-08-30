@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.os.AsyncTask
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.URL
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -28,6 +29,12 @@ class HospitalActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         // Fetch data from API
+        val fab: FloatingActionButton = findViewById(R.id.fab)
+        fab.setOnClickListener {
+            // Handle FAB click here
+            FetchHospitalDataTask().execute()
+        }
+
         FetchHospitalDataTask().execute()
     }
     private inner class FetchHospitalDataTask : AsyncTask<Void, Void, List<Hospital>>() {
